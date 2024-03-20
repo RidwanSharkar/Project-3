@@ -126,6 +126,8 @@ public class MemberList {
         }
     }
 
+
+
     /**
      * Helper method used to swap members in the collection given their indexes
      * @param index1 the index of the first member to be swapped.
@@ -181,6 +183,28 @@ public class MemberList {
      */
     public boolean contains(Member member) {
         return find(member) != NOT_FOUND;
+    }
+
+    /**
+     * @return the size of the member list
+     */
+
+    /**
+     * Checks if a profile matches a profile of a member in the list
+     * @param profile the profile being compared to the members
+     * @return the member that matches the profile
+     */
+    public Member containsProfile(Profile profile) {
+
+        Member rmember = new Member();
+
+        for(int i = 0; i < members.length; i++) {
+            if (members[i].getProfile().compareTo(profile) == 0) {
+                rmember = members[i];
+            }
+        }
+
+        return rmember;
     }
 
     /**

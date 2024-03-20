@@ -218,6 +218,26 @@ public class StudioManagerController
 
     private void handleCancelExist (ActionEvent event) {
 
+        String firstName = fnameMemField.getText();
+        String lastName = lnameMemField.getText();
+        LocalDate dpdate = dp_dob.getValue();
+        Date dob = handleDatePicker(dpdate);
+        Profile memProf = new Profile(firstName, lastName, dob);
+
+        Member remMember = new Member();
+        remMember = memberList.containsProfile(memProf);
+
+        if (remMember.getProfile() == null) {
+            output.appendText("Error, invalid member or member doesn't have membership");
+            return;
+        }
+
+        if (memberList.remove(remMember)) {
+            output.appendText("Member " + remMember + " removed\n");
+        } else {
+            output.appendText("Error, invalid member or member doesn't have membership");
+        }
+
     }
 
     /*-------------------------------------------------------------------------------*/
@@ -246,12 +266,6 @@ public class StudioManagerController
 
 
 }
-
-
-
-
-
-
 
 
 /*
