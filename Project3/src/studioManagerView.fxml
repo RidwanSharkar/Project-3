@@ -8,6 +8,7 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -147,5 +148,6 @@
                 </Tab>
             </tabs>
         </TabPane>
+      <TextArea layoutY="368.0" prefHeight="89.0" prefWidth="600.0" />
     </children>
 </AnchorPane>
