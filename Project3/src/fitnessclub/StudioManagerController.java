@@ -103,6 +103,7 @@ public class StudioManagerController
         output.appendText(date + "\n");
     }
 
+    @FXML
     private Date handleDatePicker(LocalDate ldate) {
         int month = ldate.getMonthValue();
         int day = ldate.getDayOfMonth();
@@ -112,6 +113,7 @@ public class StudioManagerController
         return rdate;
     }
 
+    @FXML
     private Location handleHomeStudioRB() {
 
         Location homeStudio;
@@ -137,6 +139,7 @@ public class StudioManagerController
 
     }
 
+    @FXML
     private Date handleExprDate() {
         //default for expiration
         Date expiration;
@@ -179,6 +182,7 @@ public class StudioManagerController
         return expiration;
     }
 
+
     @FXML
     private void handleAddMember(ActionEvent event) {
 
@@ -217,6 +221,7 @@ public class StudioManagerController
 
     }
 
+    @FXML
     private void handleCancelExist (ActionEvent event) {
 
         String firstName = fnameMemField.getText();
