@@ -1,5 +1,6 @@
 package fitnessclub;
 import java.io.File;
+import java.time.LocalDate;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -38,10 +39,19 @@ public class StudioManagerController
     private ToggleGroup membership;
 
     @FXML
+    private TextField fnameMemField, lnameMemField, gpassMemField;
+
+    @FXML
     private TextArea output;
 
     @FXML
     private RadioButton rb_basic, rb_family, rb_premium;
+
+    @FXML
+    private Button addNewButton, canMemButton;
+
+    @FXML
+    private RadioButton bridgeMemRadButton, edisonMemRadButton, frankMemRadButton, piscaMemRadButton, somerMemRadButton;
 
     @FXML
     private CheckBox cb_caramel, cb_cream, cb_sugar;
@@ -51,6 +61,8 @@ public class StudioManagerController
 
     @FXML
     TableColumn<DataModel, String> col_name, col_phone;
+
+    private MemberList memberList;
 
     /* The initialize() method will be performed automatically when the application launches. */
 
@@ -89,6 +101,117 @@ public class StudioManagerController
     {
         String date = dp_dob.getValue().toString();
         output.appendText(date + "\n");
+    }
+
+    private Date handleDatePicker(LocalDate ldate) {
+        int month = ldate.getMonthValue();
+        int day = ldate.getDayOfMonth();
+        int year = ldate.getYear();
+
+        Date rdate = new Date(month, day, year);
+        return rdate;
+    }
+
+    private Location handleHomeStudioRB() {
+
+        Location homeStudio;
+
+        if (bridgeMemRadButton.isSelected()) {
+            homeStudio = Location.BRIDGEWATER;
+            //output.appendText("bridgewater\n");
+        } else if(edisonMemRadButton.isSelected()) {
+            homeStudio = Location.EDISON;
+            //output.appendText("edison\n");
+        } else if(frankMemRadButton.isSelected()) {
+            homeStudio = Location.FRANKLIN;
+            //output.appendText("franklin\n");
+        } else if(piscaMemRadButton.isSelected()) {
+            homeStudio = Location.PISCATAWAY;
+            //output.appendText("piscataway\n");
+        } else {
+            homeStudio = Location.SOMERVILLE;
+            //output.appendText("somerville\n");
+        }
+
+        return homeStudio;
+
+    }
+
+    private Date handleExprDate() {
+        //default for expiration
+        Date expiration;
+        Date today = Date.getTodaysDate();
+        int day = today.getDay();
+        int month = today.getMonth();
+        int year = today.getYear();
+
+        if (rb_basic.isSelected()) { //basic exp 1 month from today
+            if (month > 11) {
+                month = 1;
+                year += 1;
+                expiration = new Date(month, day, year);
+            } else {
+                month += 1;
+                expiration = new Date(month, day, year);
+            }
+
+        } else if (rb_family.isSelected()) { //family exp 3 month from today
+            switch (month) {
+                case 10:
+                    month = 1;
+                    year += 1;
+                case 11:
+                    month = 2;
+                    year += 1;
+                case 12:
+                    month = 3;
+                    year += 1;
+                default:
+                    month += 3;
+            }
+            expiration = new Date(month, day, year);
+
+        } else { //premium expires in a year from today
+            year += 1;
+            expiration = new Date(month, day, year);
+        }
+
+        return expiration;
+    }
+
+    private void handleAddMember(ActionEvent event) {
+
+        //Creating a Profile from GUI data
+        String firstName = fnameMemField.getText();
+        String lastName = lnameMemField.getText();
+        LocalDate dpdate = dp_dob.getValue();
+        Date dob = handleDatePicker(dpdate);
+        Profile memProf = new Profile(firstName, lastName, dob);
+
+        Location homeStudio = handleHomeStudioRB();
+
+        Date expire = new Date (1, 1, 2000);
+        Member member;
+
+        if (rb_basic.isSelected()) {
+            expire = handleExprDate();
+            member = new Basic (memProf, expire, homeStudio);
+            gpassMemField.setText("0"); //changes Guest Pass field to 0 for basic members
+
+        } else if (rb_family.isSelected()) {
+            expire = handleExprDate();
+            member = new Family (memProf, expire, homeStudio);
+            gpassMemField.setText("1"); //changes Guest Pass field to 1 for family members
+        } else {
+            expire = handleExprDate();
+            member = new Premium (memProf, expire, homeStudio);
+            gpassMemField.setText("3"); //changes Guest Pass field to 3 for premium members
+        }
+
+        if (addNewButton.isPressed()) {
+            memberList.add(member);
+            //output.appendText("Member " + member.toString() + " added");
+        }
     }
 
 

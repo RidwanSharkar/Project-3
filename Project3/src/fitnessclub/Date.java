@@ -151,6 +151,12 @@ public class Date implements Comparable<Date> {
     }
 
     /**
+     * Returns the day associate with the date
+     * @return the day of the date
+     */
+    public int getDay() { return this.day; }
+
+    /**
      * Returns the month associated with the date.
      * @return the month of the date.
      */

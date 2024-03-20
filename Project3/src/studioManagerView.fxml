@@ -32,19 +32,19 @@
                                 <Label layoutX="272.0" layoutY="48.0" text="Last Name" />
                                 <Label layoutX="22.0" layoutY="90.0" text="Date of Birth" />
                                 <TextField fx:id="lnameMemField" layoutX="336.0" layoutY="44.0" />
-                                <DatePicker fx:id="dobMemField" layoutX="96.0" layoutY="86.0" prefHeight="26.0" prefWidth="150.0" />
+                                <DatePicker fx:id="dp_dob" layoutX="96.0" layoutY="86.0" prefHeight="26.0" prefWidth="150.0" />
                                 <Button fx:id="canMemButton" layoutX="363.0" layoutY="86.0" mnemonicParsing="false" text="Cancel Existing" />
                                 <Label layoutX="14.0" layoutY="150.0" text="Member Type">
                                     <font>
                                         <Font name="System Bold" size="14.0" />
                                     </font>
                                 </Label>
-                                <RadioButton fx:id="basicRadButton" layoutX="127.0" layoutY="152.0" mnemonicParsing="false" text="Basic">
+                                <RadioButton fx:id="rb_basic" layoutX="127.0" layoutY="152.0" mnemonicParsing="false" text="Basic">
                            <toggleGroup>
                               <ToggleGroup fx:id="memberType" />
                            </toggleGroup></RadioButton>
-                                <RadioButton fx:id="famRadButton" layoutX="202.0" layoutY="152.0" mnemonicParsing="false" text="Family" toggleGroup="$memberType" />
-                                <RadioButton fx:id="premRadButton" layoutX="282.0" layoutY="152.0" mnemonicParsing="false" text="Premium" toggleGroup="$memberType" />
+                                <RadioButton fx:id="rb_family" layoutX="202.0" layoutY="152.0" mnemonicParsing="false" text="Family" toggleGroup="$memberType" />
+                                <RadioButton fx:id="rb_premium" layoutX="282.0" layoutY="152.0" mnemonicParsing="false" text="Premium" toggleGroup="$memberType" />
                                 <Label layoutX="14.0" layoutY="201.0" text="Home Studio">
                                     <font>
                                         <Font name="System Bold" size="14.0" />
@@ -164,6 +164,6 @@
                 </Tab>
             </tabs>
         </TabPane>
-      <TextArea fx:id="notifArea" layoutY="368.0" prefHeight="89.0" prefWidth="600.0" />
+      <TextArea fx:id="output" layoutY="368.0" prefHeight="89.0" prefWidth="600.0" />
     </children>
 </AnchorPane>
