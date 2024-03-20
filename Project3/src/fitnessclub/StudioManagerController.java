@@ -179,6 +179,7 @@ public class StudioManagerController
         return expiration;
     }
 
+    @FXML
     private void handleAddMember(ActionEvent event) {
 
         //Creating a Profile from GUI data
