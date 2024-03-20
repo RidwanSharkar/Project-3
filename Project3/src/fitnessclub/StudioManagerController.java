@@ -208,12 +208,17 @@ public class StudioManagerController
             gpassMemField.setText("3"); //changes Guest Pass field to 3 for premium members
         }
 
-        if (addNewButton.isPressed()) {
-            memberList.add(member);
-            //output.appendText("Member " + member.toString() + " added");
+        if(memberList.add(member)) {
+            output.appendText("Member " + member + " added\n");
+        } else {
+            output.appendText("Error, invalid member or member is already in list");
         }
+
     }
 
+    private void handleCancelExist (ActionEvent event) {
+
+    }
 
     /*-------------------------------------------------------------------------------*/
 

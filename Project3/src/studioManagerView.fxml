@@ -60,7 +60,7 @@
                                 <RadioButton fx:id="somerMemRadButton" layoutX="458.0" layoutY="203.0" mnemonicParsing="false" text="Somerville" toggleGroup="$homeStudio" />
                                 <Button fx:id="addNewButton" layoutX="181.0" layoutY="269.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Add New" />
                                 <Button fx:id="loadMemButton" layoutX="309.0" layoutY="269.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Load Members" />
-                        <TextField fx:id="gpassMemField" layoutX="446.0" layoutY="147.0" prefHeight="26.0" prefWidth="33.0" />
+                        <TextField fx:id="gpassMemField" editable="false" layoutX="446.0" layoutY="147.0" prefHeight="26.0" prefWidth="33.0" />
                         <Label layoutX="379.0" layoutY="152.0" text="Guest Pass">
                            <font>
                               <Font name="System Bold" size="12.0" />
@@ -123,7 +123,7 @@
                                     </font>
                                 </Label>
                                 <Label layoutX="310.0" layoutY="250.0" text="Guest Pass Remaining" />
-                                <TextField fx:id="gpassRemainFIeld" layoutX="454.0" layoutY="246.0" prefHeight="26.0" prefWidth="34.0" />
+                                <TextField fx:id="gpassRemainField" editable="false" layoutX="454.0" layoutY="246.0" prefHeight="26.0" prefWidth="34.0" />
                                 <Button fx:id="addMemClassButton" layoutX="65.0" layoutY="293.0" mnemonicParsing="false" text="Add Member" />
                                 <Button fx:id="remMemClassButton" layoutX="166.0" layoutY="293.0" mnemonicParsing="false" text="Remove Member" />
                                 <Button fx:id="addGuestClassButton" layoutX="310.0" layoutY="293.0" mnemonicParsing="false" text="Add Guest" />
