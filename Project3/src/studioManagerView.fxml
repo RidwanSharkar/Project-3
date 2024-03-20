@@ -10,6 +10,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -17,43 +18,49 @@
     <children>
         <TabPane prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
             <tabs>
-                <Tab text="Membership">
+                <Tab fx:id="membershipTab" text="Membership">
                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="600.0">
+                        <AnchorPane fx:id="insideMemTab" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="600.0">
                             <children>
                                 <Label layoutX="14.0" layoutY="14.0" text="Member Profile">
                                     <font>
                                         <Font name="System Bold" size="14.0" />
                                     </font>
                                 </Label>
-                                <TextField layoutX="96.0" layoutY="44.0" />
+                                <TextField fx:id="fnameMemField" layoutX="96.0" layoutY="44.0" />
                                 <Label layoutX="22.0" layoutY="48.0" text="First Name" />
                                 <Label layoutX="272.0" layoutY="48.0" text="Last Name" />
                                 <Label layoutX="22.0" layoutY="90.0" text="Date of Birth" />
-                                <TextField layoutX="336.0" layoutY="44.0" />
-                                <DatePicker layoutX="96.0" layoutY="86.0" prefHeight="26.0" prefWidth="150.0" />
-                                <Button layoutX="363.0" layoutY="86.0" mnemonicParsing="false" text="Cancel Existing" />
+                                <TextField fx:id="lnameMemField" layoutX="336.0" layoutY="44.0" />
+                                <DatePicker fx:id="dobMemField" layoutX="96.0" layoutY="86.0" prefHeight="26.0" prefWidth="150.0" />
+                                <Button fx:id="canMemButton" layoutX="363.0" layoutY="86.0" mnemonicParsing="false" text="Cancel Existing" />
                                 <Label layoutX="14.0" layoutY="150.0" text="Member Type">
                                     <font>
                                         <Font name="System Bold" size="14.0" />
                                     </font>
                                 </Label>
-                                <RadioButton layoutX="127.0" layoutY="152.0" mnemonicParsing="false" text="Basic" />
-                                <RadioButton layoutX="202.0" layoutY="152.0" mnemonicParsing="false" text="Family" />
-                                <RadioButton layoutX="282.0" layoutY="152.0" mnemonicParsing="false" text="Premium" />
+                                <RadioButton fx:id="basicRadButton" layoutX="127.0" layoutY="152.0" mnemonicParsing="false" text="Basic">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="memberType" />
+                           </toggleGroup></RadioButton>
+                                <RadioButton fx:id="famRadButton" layoutX="202.0" layoutY="152.0" mnemonicParsing="false" text="Family" toggleGroup="$memberType" />
+                                <RadioButton fx:id="premRadButton" layoutX="282.0" layoutY="152.0" mnemonicParsing="false" text="Premium" toggleGroup="$memberType" />
                                 <Label layoutX="14.0" layoutY="201.0" text="Home Studio">
                                     <font>
                                         <Font name="System Bold" size="14.0" />
                                     </font>
                                 </Label>
-                                <RadioButton layoutX="127.0" layoutY="203.0" mnemonicParsing="false" text="Bridgewater" />
-                                <RadioButton layoutX="222.0" layoutY="203.0" mnemonicParsing="false" text="Edison" />
-                                <RadioButton layoutX="293.0" layoutY="203.0" mnemonicParsing="false" text="Franklin" />
-                                <RadioButton layoutX="367.0" layoutY="203.0" mnemonicParsing="false" text="Piscataway" />
-                                <RadioButton layoutX="458.0" layoutY="203.0" mnemonicParsing="false" text="Somerville" />
-                                <Button layoutX="181.0" layoutY="269.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Add New" />
-                                <Button layoutX="309.0" layoutY="269.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Load Members" />
-                        <TextField layoutX="446.0" layoutY="147.0" prefHeight="26.0" prefWidth="33.0" />
+                                <RadioButton fx:id="bridgeMemRadButton" layoutX="127.0" layoutY="203.0" mnemonicParsing="false" text="Bridgewater">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="homeStudio" />
+                           </toggleGroup></RadioButton>
+                                <RadioButton fx:id="edisonMemRadButton" layoutX="222.0" layoutY="203.0" mnemonicParsing="false" text="Edison" toggleGroup="$homeStudio" />
+                                <RadioButton fx:id="frankMemRadButton" layoutX="293.0" layoutY="203.0" mnemonicParsing="false" text="Franklin" toggleGroup="$homeStudio" />
+                                <RadioButton fx:id="piscaMemRadButton" layoutX="367.0" layoutY="203.0" mnemonicParsing="false" text="Piscataway" toggleGroup="$homeStudio" />
+                                <RadioButton fx:id="somerMemRadButton" layoutX="458.0" layoutY="203.0" mnemonicParsing="false" text="Somerville" toggleGroup="$homeStudio" />
+                                <Button fx:id="addNewButton" layoutX="181.0" layoutY="269.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Add New" />
+                                <Button fx:id="loadMemButton" layoutX="309.0" layoutY="269.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Load Members" />
+                        <TextField fx:id="gpassMemField" layoutX="446.0" layoutY="147.0" prefHeight="26.0" prefWidth="33.0" />
                         <Label layoutX="379.0" layoutY="152.0" text="Guest Pass">
                            <font>
                               <Font name="System Bold" size="12.0" />
@@ -63,9 +70,9 @@
                         </AnchorPane>
                     </content>
                 </Tab>
-                <Tab text="Class Attendance">
+                <Tab fx:id="classAttTab" text="Class Attendance">
                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                        <AnchorPane fx:id="insideClaAttTab" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <children>
                                 <Label layoutX="27.0" layoutY="37.0" text="Class">
                                     <font>
@@ -82,45 +89,54 @@
                                         <Font name="System Bold" size="14.0" />
                                     </font>
                                 </Label>
-                                <RadioButton layoutX="124.0" layoutY="132.0" mnemonicParsing="false" text="Bridgewater" />
-                                <RadioButton layoutX="226.0" layoutY="132.0" mnemonicParsing="false" text="Edison" />
-                                <RadioButton layoutX="300.0" layoutY="132.0" mnemonicParsing="false" text="Franklin" />
-                                <RadioButton layoutX="380.0" layoutY="132.0" mnemonicParsing="false" text="Piscataway" />
-                                <RadioButton layoutX="471.0" layoutY="132.0" mnemonicParsing="false" text="Somerville" />
-                                <RadioButton layoutX="123.0" layoutY="85.0" mnemonicParsing="false" text="Jennifer" />
-                                <RadioButton layoutX="199.0" layoutY="85.0" mnemonicParsing="false" text="Kim" />
-                                <RadioButton layoutX="260.0" layoutY="85.0" mnemonicParsing="false" text="Denise" />
-                                <RadioButton layoutX="338.0" layoutY="85.0" mnemonicParsing="false" text="Davis" />
-                                <RadioButton layoutX="403.0" layoutY="85.0" mnemonicParsing="false" text="Emma" />
-                                <RadioButton layoutX="123.0" layoutY="37.0" mnemonicParsing="false" text="Pilates" />
-                                <RadioButton layoutX="199.0" layoutY="37.0" mnemonicParsing="false" text="Spinning" />
-                                <RadioButton layoutX="289.0" layoutY="37.0" mnemonicParsing="false" text="Cardio" />
+                                <RadioButton fx:id="bridgeClasRadButton" layoutX="124.0" layoutY="132.0" mnemonicParsing="false" text="Bridgewater">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="locationStudio" />
+                           </toggleGroup></RadioButton>
+                                <RadioButton fx:id="edisonClasRadButton" layoutX="226.0" layoutY="132.0" mnemonicParsing="false" text="Edison" toggleGroup="$locationStudio" />
+                                <RadioButton fx:id="frankClasRadButton" layoutX="300.0" layoutY="132.0" mnemonicParsing="false" text="Franklin" toggleGroup="$locationStudio" />
+                                <RadioButton fx:id="piscaClasRadButton" layoutX="380.0" layoutY="132.0" mnemonicParsing="false" text="Piscataway" toggleGroup="$locationStudio" />
+                                <RadioButton fx:id="somerClasRadButton" layoutX="471.0" layoutY="132.0" mnemonicParsing="false" text="Somerville" toggleGroup="$locationStudio" />
+                                <RadioButton fx:id="jennRadButton" layoutX="123.0" layoutY="85.0" mnemonicParsing="false" text="Jennifer">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="instructorType" />
+                           </toggleGroup></RadioButton>
+                                <RadioButton fx:id="kimRadButton" layoutX="199.0" layoutY="85.0" mnemonicParsing="false" text="Kim" toggleGroup="$instructorType" />
+                                <RadioButton fx:id="deniRadButton" layoutX="260.0" layoutY="85.0" mnemonicParsing="false" text="Denise" toggleGroup="$instructorType" />
+                                <RadioButton fx:id="davRadButton" layoutX="338.0" layoutY="85.0" mnemonicParsing="false" text="Davis" toggleGroup="$instructorType" />
+                                <RadioButton fx:id="emmaRadButton" layoutX="403.0" layoutY="85.0" mnemonicParsing="false" text="Emma" toggleGroup="$instructorType" />
+                                <RadioButton fx:id="pilatRadButton" layoutX="123.0" layoutY="37.0" mnemonicParsing="false" text="Pilates">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="classType" />
+                           </toggleGroup></RadioButton>
+                                <RadioButton fx:id="spinRadButton" layoutX="199.0" layoutY="37.0" mnemonicParsing="false" text="Spinning" toggleGroup="$classType" />
+                                <RadioButton fx:id="cardioRadButton" layoutX="289.0" layoutY="37.0" mnemonicParsing="false" text="Cardio" toggleGroup="$classType" />
                                 <Label layoutX="31.0" layoutY="206.0" text="First Name" />
-                                <TextField layoutX="124.0" layoutY="202.0" />
+                                <TextField fx:id="fnameClasButton" layoutX="124.0" layoutY="202.0" />
                                 <Label layoutX="310.0" layoutY="206.0" text="Last Name" />
-                                <TextField layoutX="396.0" layoutY="202.0" />
+                                <TextField fx:id="lnameClasButton" layoutX="396.0" layoutY="202.0" />
                                 <Label layoutX="31.0" layoutY="250.0" text="Date of Birth" />
-                                <DatePicker layoutX="123.0" layoutY="246.0" prefHeight="26.0" prefWidth="150.0" />
+                                <DatePicker fx:id="dobClasButton" layoutX="123.0" layoutY="246.0" prefHeight="26.0" prefWidth="150.0" />
                                 <Label layoutX="261.0" layoutY="176.0" text="Member">
                                     <font>
                                         <Font name="System Bold" size="14.0" />
                                     </font>
                                 </Label>
                                 <Label layoutX="310.0" layoutY="250.0" text="Guest Pass Remaining" />
-                                <TextField layoutX="454.0" layoutY="246.0" prefHeight="26.0" prefWidth="34.0" />
-                                <Button layoutX="65.0" layoutY="293.0" mnemonicParsing="false" text="Add Member" />
-                                <Button layoutX="166.0" layoutY="293.0" mnemonicParsing="false" text="Remove Member" />
-                                <Button layoutX="310.0" layoutY="293.0" mnemonicParsing="false" text="Add Guest" />
-                                <Button layoutX="396.0" layoutY="293.0" mnemonicParsing="false" text="Remove Guest" />
+                                <TextField fx:id="gpassRemainFIeld" layoutX="454.0" layoutY="246.0" prefHeight="26.0" prefWidth="34.0" />
+                                <Button fx:id="addMemClassButton" layoutX="65.0" layoutY="293.0" mnemonicParsing="false" text="Add Member" />
+                                <Button fx:id="remMemClassButton" layoutX="166.0" layoutY="293.0" mnemonicParsing="false" text="Remove Member" />
+                                <Button fx:id="addGuestClassButton" layoutX="310.0" layoutY="293.0" mnemonicParsing="false" text="Add Guest" />
+                                <Button fx:id="remGuestClassButton" layoutX="396.0" layoutY="293.0" mnemonicParsing="false" text="Remove Guest" />
                             </children>
                         </AnchorPane>
                     </content>
                 </Tab>
-                <Tab text="Class Schedule">
+                <Tab fx:id="classSchTab" text="Class Schedule">
                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                        <AnchorPane fx:id="insideClaSchTab" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView layoutX="14.0" layoutY="14.0" prefHeight="265.0" prefWidth="570.0">
+                        <TableView fx:id="classSchTableView" layoutX="14.0" layoutY="14.0" prefHeight="265.0" prefWidth="570.0">
                           <columns>
                             <TableColumn prefWidth="75.0" text="Time" />
                             <TableColumn prefWidth="140.0" text="Class Name" />
@@ -128,15 +144,15 @@
                               <TableColumn minWidth="6.39996337890625" prefWidth="175.199951171875" text="Studio Location" />
                           </columns>
                         </TableView>
-                        <Button layoutX="217.0" layoutY="288.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="166.0" text="Load Schedule" />
+                        <Button fx:id="loadSchButton" layoutX="217.0" layoutY="288.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="166.0" text="Load Schedule" />
                      </children></AnchorPane>
                     </content>
                 </Tab>
-                <Tab text="Studio Location">
+                <Tab fx:id="studioLTab" text="Studio Location">
                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="408.0" prefWidth="600.0">
+                        <AnchorPane fx:id="insideStuLocTab" minHeight="0.0" minWidth="0.0" prefHeight="408.0" prefWidth="600.0">
                      <children>
-                        <TableView layoutX="12.0" layoutY="14.0" prefHeight="314.0" prefWidth="576.0">
+                        <TableView fx:id="sudioLocTableVIew" layoutX="12.0" layoutY="14.0" prefHeight="314.0" prefWidth="576.0">
                           <columns>
                             <TableColumn prefWidth="202.4000244140625" text="City" />
                             <TableColumn prefWidth="220.79998779296875" text="County" />
@@ -148,6 +164,6 @@
                 </Tab>
             </tabs>
         </TabPane>
-      <TextArea layoutY="368.0" prefHeight="89.0" prefWidth="600.0" />
+      <TextArea fx:id="notifArea" layoutY="368.0" prefHeight="89.0" prefWidth="600.0" />
     </children>
 </AnchorPane>
