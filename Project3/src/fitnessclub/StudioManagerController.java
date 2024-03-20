@@ -15,6 +15,119 @@ import javafx.stage.Stage;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.scene.control.Alert.AlertType;
 
+/*-------------------------------------------------------------*/
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+
+
+
+/* Demo RadioButton, CheckBox, DatePicker and TableView */
+
+
+public class StudioManagerController
+{
+    @FXML
+    DatePicker dp_dob;
+
+    @FXML
+    private ToggleGroup membership;
+
+    @FXML
+    private TextArea output;
+
+    @FXML
+    private RadioButton rb_basic, rb_family, rb_premium;
+
+    @FXML
+    private CheckBox cb_caramel, cb_cream, cb_sugar;
+
+    @FXML
+    TableView tbv_contact;
+
+    @FXML
+    TableColumn<DataModel, String> col_name, col_phone;
+
+    /* The initialize() method will be performed automatically when the application launches. */
+
+    public void initialize() {
+        ObservableList list = FXCollections.observableArrayList(
+                new DataModel("a", "123"),
+                new DataModel("b", "456"),
+                new DataModel("c", "789"));
+        tbv_contact.setItems(list);
+        col_name.setCellValueFactory(new PropertyValueFactory<>("name"));
+        col_phone.setCellValueFactory(new PropertyValueFactory<>("phone"));
+    }
+
+    @FXML
+    void checkSugar(ActionEvent event)
+    {
+        if (cb_sugar.isSelected())
+            cb_caramel.setDisable(true);
+        else
+            cb_caramel.setDisable(false);
+    }
+
+    @FXML
+    void displaySelected(ActionEvent event)
+    {
+        if (rb_basic.isSelected())
+            output.appendText("basic\n");
+        else if (rb_family.isSelected())
+            output.appendText("family\n");
+        else
+            output.appendText("premium\n");
+    }
+
+    @FXML
+    void displayDate(ActionEvent event)
+    {
+        String date = dp_dob.getValue().toString();
+        output.appendText(date + "\n");
+    }
+
+
+    /*-------------------------------------------------------------------------------*/
+
+
+    /*
+    private void handleAddMember(ActionEvent event)
+    {
+        // Get data from GUI controls
+        String firstName = firstNameField.getText();
+        String lastName = lastNameField.getText();
+        //... other fields
+
+        // Use model classes to add member
+        /*
+        Member newMember = new Member(firstName, lastName, /* other da); */
+/*
+        if (memberList.add(newMember)) {
+            // Update GUI accordingly
+        } else {
+            // Show error message on GUI
+        }
+
+    }
+    */
+
+
+}
+
+
+
+
+
+
+
+
+/*
+
 public class StudioManagerController
 {
     @FXML
@@ -27,10 +140,10 @@ public class StudioManagerController
     private TextArea messageArea;
 
     @FXML
-    /**
+
      * Event Handler for the add button
      * @param event
-     */
+
     void add(ActionEvent event) {
         //messageArea.clear(); //clear the TextArea.
         try {
@@ -104,6 +217,7 @@ public class StudioManagerController
         sum.clear();
         messageArea.clear();
     }
-
 }
+
+*/
 

@@ -17,12 +17,26 @@ You MUST use:
 - GridPane
 You MUST set a proper title for the window (stage)
 
-
-Useful Methods:
-void setText(String value) //Sets the value of the property text
-String getText() //Gets the value of the property text
 To prevent the user from resizing the stage,
 invoke stage.setResizable(false).
+
+LABEL Useful Methods:
+void setText(String value) //Sets the value of the property text
+String getText() //Gets the value of the property text
+
+BUTTON Useful Methods:
+void setOnAction(EventHandler<ActionEvent> value)           //Sets the value of the property onAction
+void setDisable(boolean value)                              //Sets the value of the property disable
+
+CHECKBOX Useful Methods:
+boolean isSelected()                                        //Gets the value of the property selected
+void setSelected(boolean value)                             //Sets the value of the property selected
+void setDisable(boolean value)                              //Sets the value of the property disable
+
+RadioButton and RadioButtonGroup Useful Methods:
+boolean isSelected()                                        //Gets the value of the property selected
+void setSelected(boolean value)                             //Sets the value of the property selected
+void setDisable(boolean value)                              //Sets the value of the property disable
 */
 
 public class StudioManagerMain extends Application
@@ -42,3 +56,4 @@ public class StudioManagerMain extends Application
         launch();
     }
 }
+
