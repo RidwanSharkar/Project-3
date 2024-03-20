@@ -6,10 +6,11 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="368.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
     <children>
@@ -51,6 +52,12 @@
                                 <RadioButton layoutX="458.0" layoutY="203.0" mnemonicParsing="false" text="Somerville" />
                                 <Button layoutX="181.0" layoutY="269.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Add New" />
                                 <Button layoutX="309.0" layoutY="269.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Load Members" />
+                        <TextField layoutX="446.0" layoutY="147.0" prefHeight="26.0" prefWidth="33.0" />
+                        <Label layoutX="379.0" layoutY="152.0" text="Guest Pass">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
                             </children>
                         </AnchorPane>
                     </content>
@@ -110,12 +117,32 @@
                 </Tab>
                 <Tab text="Class Schedule">
                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView layoutX="14.0" layoutY="14.0" prefHeight="265.0" prefWidth="570.0">
+                          <columns>
+                            <TableColumn prefWidth="75.0" text="Time" />
+                            <TableColumn prefWidth="140.0" text="Class Name" />
+                              <TableColumn prefWidth="180.0" text="Instructor" />
+                              <TableColumn minWidth="6.39996337890625" prefWidth="175.199951171875" text="Studio Location" />
+                          </columns>
+                        </TableView>
+                        <Button layoutX="217.0" layoutY="288.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="166.0" text="Load Schedule" />
+                     </children></AnchorPane>
                     </content>
                 </Tab>
                 <Tab text="Studio Location">
                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="408.0" prefWidth="600.0">
+                     <children>
+                        <TableView layoutX="12.0" layoutY="14.0" prefHeight="314.0" prefWidth="576.0">
+                          <columns>
+                            <TableColumn prefWidth="202.4000244140625" text="City" />
+                            <TableColumn prefWidth="220.79998779296875" text="County" />
+                              <TableColumn minWidth="0.0" prefWidth="153.60003662109375" text="Zip Code" />
+                          </columns>
+                        </TableView>
+                     </children></AnchorPane>
                     </content>
                 </Tab>
             </tabs>
