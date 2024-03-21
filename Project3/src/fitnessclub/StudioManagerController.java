@@ -17,6 +17,13 @@ import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.*;
 
+import javafx.fxml.FXML;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.beans.property.SimpleStringProperty;
 
 
 
@@ -48,6 +55,7 @@ public class StudioManagerController
 
     private MemberList memberList;
 
+
     @FXML
     void displaySelected(ActionEvent event)
     {
@@ -65,6 +73,30 @@ public class StudioManagerController
         String date = dp_dob.getValue().toString();
         output.appendText(date + "\n");
     }
+
+    /*----------------------------------------------------------------------------*/
+
+    @FXML
+    private TableView<Location> locationTableView;
+    @FXML
+    private TableColumn<Location, String> cityColumn;
+    @FXML
+    private TableColumn<Location, String> countyColumn;
+    @FXML
+    private TableColumn<Location, String> zipCodeColumn;
+
+    public void initialize()
+    {
+        cityColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().name()));
+        countyColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCounty()));
+        zipCodeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getZipCode()));
+
+        ObservableList<Location> locationList = FXCollections.observableArrayList(Location.values());
+        locationTableView.setItems(locationList);
+    }
+
+
+    /*----------------------------------------------------------------------------*/
 
     private Date handleDatePicker(LocalDate ldate) {
         int month = ldate.getMonthValue();
