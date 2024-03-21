@@ -84,7 +84,7 @@ public class StudioManagerController
 
     public void initialize()
     {
-        cityColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().toString()));
+        cityColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().name()));
         countyColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCounty()));
         zipCodeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getZipCode()));
 
