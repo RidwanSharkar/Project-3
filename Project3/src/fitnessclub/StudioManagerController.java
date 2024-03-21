@@ -15,15 +15,8 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.scene.control.Alert.AlertType;
-
-/*-------------------------------------------------------------*/
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
+
 
 
 
@@ -34,9 +27,6 @@ public class StudioManagerController
 {
     @FXML
     DatePicker dp_dob;
-
-    @FXML
-    private ToggleGroup membership;
 
     @FXML
     private TextField fnameMemField, lnameMemField, gpassMemField;
@@ -53,37 +43,7 @@ public class StudioManagerController
     @FXML
     private RadioButton bridgeMemRadButton, edisonMemRadButton, frankMemRadButton, piscaMemRadButton, somerMemRadButton;
 
-    @FXML
-    private CheckBox cb_caramel, cb_cream, cb_sugar;
-
-    @FXML
-    TableView tbv_contact;
-
-    @FXML
-    TableColumn<DataModel, String> col_name, col_phone;
-
     private MemberList memberList;
-
-    /* The initialize() method will be performed automatically when the application launches. */
-
-    public void initialize() {
-        ObservableList list = FXCollections.observableArrayList(
-                new DataModel("a", "123"),
-                new DataModel("b", "456"),
-                new DataModel("c", "789"));
-        tbv_contact.setItems(list);
-        col_name.setCellValueFactory(new PropertyValueFactory<>("name"));
-        col_phone.setCellValueFactory(new PropertyValueFactory<>("phone"));
-    }
-
-    @FXML
-    void checkSugar(ActionEvent event)
-    {
-        if (cb_sugar.isSelected())
-            cb_caramel.setDisable(true);
-        else
-            cb_caramel.setDisable(false);
-    }
 
     @FXML
     void displaySelected(ActionEvent event)
@@ -103,7 +63,6 @@ public class StudioManagerController
         output.appendText(date + "\n");
     }
 
-    @FXML
     private Date handleDatePicker(LocalDate ldate) {
         int month = ldate.getMonthValue();
         int day = ldate.getDayOfMonth();
@@ -113,7 +72,6 @@ public class StudioManagerController
         return rdate;
     }
 
-    @FXML
     private Location handleHomeStudioRB() {
 
         Location homeStudio;
@@ -139,7 +97,6 @@ public class StudioManagerController
 
     }
 
-    @FXML
     private Date handleExprDate() {
         //default for expiration
         Date expiration;

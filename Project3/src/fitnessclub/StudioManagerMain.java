@@ -44,12 +44,17 @@ public class StudioManagerMain extends Application
     @Override
     public void start(Stage stage) throws IOException
     {
-        FXMLLoader fxmlLoader = new FXMLLoader(StudioManagerMain.class.getResource("/studioManagerView.fxml"));
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(StudioManagerMain.class.getResource("/studioManagerView.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 550, 400);
 
-        Scene scene = new Scene(fxmlLoader.load(), 550, 400);
-        stage.setTitle("RU Fitness Club - Studio Manager");
-        stage.setScene(scene);
-        stage.show();
+            stage.setTitle("RU Fitness Club - Studio Manager");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public static void main(String[] args)
