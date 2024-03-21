@@ -33,7 +33,7 @@
                                 <Label layoutX="22.0" layoutY="90.0" text="Date of Birth" />
                                 <TextField fx:id="lnameMemField" layoutX="336.0" layoutY="44.0" />
                                 <DatePicker fx:id="dp_dob" layoutX="96.0" layoutY="86.0" prefHeight="26.0" prefWidth="150.0" />
-                                <Button fx:id="canMemButton" layoutX="363.0" layoutY="86.0" mnemonicParsing="false" text="Cancel Existing" />
+                                <Button fx:id="canMemButton" layoutX="363.0" layoutY="86.0" mnemonicParsing="false" onAction="#handleCancelExist" text="Cancel Existing" />
                                 <Label layoutX="14.0" layoutY="150.0" text="Member Type">
                                     <font>
                                         <Font name="System Bold" size="14.0" />
@@ -58,7 +58,7 @@
                                 <RadioButton fx:id="frankMemRadButton" layoutX="293.0" layoutY="203.0" mnemonicParsing="false" text="Franklin" toggleGroup="$homeStudio" />
                                 <RadioButton fx:id="piscaMemRadButton" layoutX="367.0" layoutY="203.0" mnemonicParsing="false" text="Piscataway" toggleGroup="$homeStudio" />
                                 <RadioButton fx:id="somerMemRadButton" layoutX="458.0" layoutY="203.0" mnemonicParsing="false" text="Somerville" toggleGroup="$homeStudio" />
-                                <Button fx:id="addNewButton" layoutX="181.0" layoutY="269.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Add New" />
+                                <Button fx:id="addNewButton" layoutX="181.0" layoutY="269.0" mnemonicParsing="false" onAction="#handleAddMember" prefHeight="40.0" prefWidth="100.0" text="Add New" />
                                 <Button fx:id="loadMemButton" layoutX="309.0" layoutY="269.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Load Members" />
                         <TextField fx:id="gpassMemField" editable="false" layoutX="446.0" layoutY="147.0" prefHeight="26.0" prefWidth="33.0" />
                         <Label layoutX="379.0" layoutY="152.0" text="Guest Pass">

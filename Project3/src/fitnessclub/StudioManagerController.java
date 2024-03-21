@@ -43,6 +43,9 @@ public class StudioManagerController
     @FXML
     private RadioButton bridgeMemRadButton, edisonMemRadButton, frankMemRadButton, piscaMemRadButton, somerMemRadButton;
 
+    @FXML
+    private TableView<String> classSchTableView;
+
     private MemberList memberList;
 
     @FXML
@@ -202,6 +205,8 @@ public class StudioManagerController
         }
 
     }
+
+
 
     /*-------------------------------------------------------------------------------*/
 
