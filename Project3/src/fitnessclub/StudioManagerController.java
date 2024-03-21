@@ -1,29 +1,26 @@
 package fitnessclub;
+
 import java.io.File;
 import java.time.LocalDate;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.stage.FileChooser.ExtensionFilter;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.*;
-
-import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.beans.property.SimpleStringProperty;
+import java.util.Scanner;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -61,9 +58,6 @@ public class StudioManagerController
     @FXML
     private RadioButton bridgeClasRadButton, edisonClasRadButton, frankClasRadButton, piscaClasRadButton, somerClasRadButton;
 
-    @FXML
-    private TableView<String> classSchTableView;
-
     private MemberList memberList = new MemberList();
 
     @FXML
@@ -76,10 +70,10 @@ public class StudioManagerController
     private TableColumn<Location, String> zipCodeColumn;
 
     /**
-     * Writes and formats information to the studio location table in the GUI
-     * by getting the data from the Location enum
-     *
+     * Writes and formats information to the studio location and class scheule
+     * table in the GUI by getting the data from the Location enum and classSchedule.txt
      */
+    @FXML
     public void initialize()
     {
         cityColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().name()));
@@ -88,7 +82,106 @@ public class StudioManagerController
 
         ObservableList<Location> locationList = FXCollections.observableArrayList(Location.values());
         locationTableView.setItems(locationList);
+
+
+        timeColumn.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().get("Time")));
+
+        classNameColumn.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().get("Class Name")));
+
+        instructorColumn.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().get("Instructor")));
+
+        studioLocationColumn.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().get("Studio Location")));
     }
+
+    @FXML
+    private Button loadScheduleButton;
+    @FXML
+    private TableView<Map<String, String>> classScheduleTable;
+    @FXML
+    private TableColumn<Map<String, String>, String> timeColumn;
+    @FXML
+    private TableColumn<Map<String, String>, String> classNameColumn;
+    @FXML
+    private TableColumn<Map<String, String>, String> instructorColumn;
+    @FXML
+    private TableColumn<Map<String, String>, String> studioLocationColumn;
+
+
+    /**
+     * Loads the scheule by getting information from classSchedule.txt
+     * writes that information to the Class Schedule table in GUI
+     * @param event The load schedule button being clicked
+     */
+    @FXML
+    private void handleLoadSchedule(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
+        fileChooser.getExtensionFilters().add(extFilter);
+
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+
+        Stage stage = (Stage) locationTableView.getScene().getWindow();
+        File file = fileChooser.showOpenDialog(stage);
+
+        if (file != null) {
+            loadScheduleFromFile(file);
+        }
+    }
+
+    /**
+     * loads the scheulde from the classScheudle.txt file
+     * @param file classScheudle.txt file
+     */
+    private void loadScheduleFromFile(File file) {
+        try {
+            List<Map<String, String>> scheduleEntries = new ArrayList<>();
+            Scanner scanner = new Scanner(file);
+
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                String[] parts = line.split(" ");
+                if (parts.length == 4) {
+                    Map<String, String> entry = new HashMap<>();
+                    entry.put("Time", convertTime(parts[2]));
+                    entry.put("Class Name", parts[0]);
+                    entry.put("Instructor", parts[1]);
+                    entry.put("Studio Location", parts[3]);
+                    scheduleEntries.add(entry);
+                }
+            }
+
+
+            ObservableList<Map<String, String>> observableList = FXCollections.observableArrayList(scheduleEntries);
+
+            classScheduleTable.setItems(observableList);
+
+            output.appendText("Class Schedule loaded.\n");
+
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            output.appendText("Failed to load the schedule file.\n");
+        }
+    }
+
+    /**
+     * converts the time into useable values for the fitness class logic
+     * @param timeIdentifier A string with the value morning, afternoon, or evening
+     * @return A string with the time that can be processed by the program
+     */
+    private String convertTime(String timeIdentifier) {
+        switch (timeIdentifier) {
+            case "morning": return "9:30";
+            case "afternoon": return "14:00";
+            case "evening": return "18:30";
+            default: return "";
+        }
+    }
+
 
     /**
      * A helper method to process the data from the date picker in the GUI

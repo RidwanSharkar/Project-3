@@ -124,10 +124,10 @@
                                 </Label>
                                 <Label layoutX="310.0" layoutY="250.0" text="Guest Pass Remaining" />
                                 <TextField fx:id="gpassRemainField" editable="false" layoutX="454.0" layoutY="246.0" prefHeight="26.0" prefWidth="34.0" />
-                                <Button fx:id="addMemClassButton" layoutX="65.0" layoutY="293.0" mnemonicParsing="false" text="Add Member" />
-                                <Button fx:id="remMemClassButton" layoutX="166.0" layoutY="293.0" mnemonicParsing="false" text="Remove Member" />
-                                <Button fx:id="addGuestClassButton" layoutX="310.0" layoutY="293.0" mnemonicParsing="false" text="Add Guest" />
-                                <Button fx:id="remGuestClassButton" layoutX="396.0" layoutY="293.0" mnemonicParsing="false" text="Remove Guest" />
+                                <Button fx:id="addMemClassButton" layoutX="65.0" layoutY="293.0" mnemonicParsing="false" onAction="#handleAddClassMem" text="Add Member" />
+                                <Button fx:id="remMemClassButton" layoutX="166.0" layoutY="293.0" mnemonicParsing="false" onAction="#handleRemClassMem" text="Remove Member" />
+                                <Button fx:id="addGuestClassButton" layoutX="310.0" layoutY="293.0" mnemonicParsing="false" onAction="#handleAddClassGuest" text="Add Guest" />
+                                <Button fx:id="remGuestClassButton" layoutX="396.0" layoutY="293.0" mnemonicParsing="false" onAction="#handleRemClassGuest" text="Remove Guest" />
                             </children>
                         </AnchorPane>
                     </content>
@@ -136,15 +136,15 @@
                     <content>
                         <AnchorPane fx:id="insideClaSchTab" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="classSchTableView" layoutX="14.0" layoutY="14.0" prefHeight="265.0" prefWidth="570.0">
+                        <TableView fx:id="classScheduleTable" layoutX="14.0" layoutY="14.0" prefHeight="265.0" prefWidth="570.0">
                           <columns>
-                            <TableColumn prefWidth="75.0" text="Time" />
-                            <TableColumn prefWidth="140.0" text="Class Name" />
-                              <TableColumn prefWidth="180.0" text="Instructor" />
-                              <TableColumn minWidth="6.39996337890625" prefWidth="175.199951171875" text="Studio Location" />
+                            <TableColumn fx:id="timeColumn" prefWidth="75.0" text="Time" />
+                            <TableColumn fx:id="classNameColumn" prefWidth="140.0" text="Class Name" />
+                              <TableColumn fx:id="instructorColumn" prefWidth="180.0" text="Instructor" />
+                              <TableColumn fx:id="studioLocationColumn" minWidth="6.39996337890625" prefWidth="175.199951171875" text="Studio Location" />
                           </columns>
                         </TableView>
-                        <Button fx:id="loadSchButton" layoutX="217.0" layoutY="288.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="166.0" text="Load Schedule" />
+                        <Button fx:id="loadScheduleButton" layoutX="217.0" layoutY="288.0" mnemonicParsing="false" onAction="#handleLoadSchedule" prefHeight="37.0" prefWidth="166.0" text="Load Schedule" />
                      </children></AnchorPane>
                     </content>
                 </Tab>
