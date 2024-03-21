@@ -3,7 +3,7 @@ package fitnessclub;
 /**
  * Subclass of Member meant to represent a premium membership plan of fitness club.
  * Premium Members are billed yearly with one month free and are allowed three guest passes.
- * @author Ashley Berlinski
+ * @author Ryan Colling, Ridwan Sharkar
  */
 public class Premium extends Member {
 

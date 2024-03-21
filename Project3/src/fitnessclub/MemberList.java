@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 /**
  * Class meant to hold and manage a list of different members (Basic, Family and Premium).
- * @author Ashley Berlinski
+ * @author Ryan Colling, Ridwan Sharkar
  */
 public class MemberList {
     private Member [] members;
@@ -186,15 +186,11 @@ public class MemberList {
     }
 
     /**
-     * @return the size of the member list
-     */
-
-    /**
      * Checks if a profile matches a profile of a member in the list
      * @param profile the profile being compared to the members
      * @return the member that matches the profile
      */
-    public Member containsProfile(Profile profile) {
+    public Member containsProfile (Profile profile) {
 
         Member rmember = new Member();
 

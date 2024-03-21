@@ -3,7 +3,7 @@ package fitnessclub;
 /**
  * Class meant to represent a fitness class and its information.
  * Contains information about the instructor, start time, class type, studio location and members and guests attending.
- * @author Ashley Berlinski
+ * @author Ryan Colling, Ridwan Sharkar
  */
 public class FitnessClass {
 

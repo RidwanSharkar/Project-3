@@ -39,6 +39,11 @@ void setSelected(boolean value)                             //Sets the value of 
 void setDisable(boolean value)                              //Sets the value of the property disable
 */
 
+/**
+ * The main class that loads, prepares, and launches
+ * the GUI elements from the JavaFx file
+ * @author Ryan Colling, Ridwan Sharkar
+ */
 public class StudioManagerMain extends Application
 {
     @Override
@@ -46,7 +51,7 @@ public class StudioManagerMain extends Application
     {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(StudioManagerMain.class.getResource("/studioManagerView.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 550, 400);
+            Scene scene = new Scene(fxmlLoader.load(), 575, 450);
 
             stage.setTitle("RU Fitness Club - Studio Manager");
             stage.setScene(scene);

@@ -5,7 +5,7 @@ import java.text.DecimalFormat;
 /**
  * Enum meant to represent the start time associated with the periods of the day.
  * Morning begins at 9:30, Afternoon begins at 14:00, and Evenings begins at 18:30.
- * @author Ashley Berlinski
+ * @author Ryan Colling, Ridwan Sharkar
  */
 public enum Time {
     MORNING (9, 30),

@@ -3,7 +3,7 @@ package fitnessclub;
 /**
  * Subclass of Member meant to represent a basic membership plan of fitness club.
  * Basic Members are billed monthly and are only allowed to attend a certain amount of classes per billing cycle.
- * @author Ashley Berlinski
+ * @author Ryan Colling, Ridwan Sharkar
  */
 public class Basic extends Member {
 

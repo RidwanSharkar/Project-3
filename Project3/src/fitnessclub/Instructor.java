@@ -3,7 +3,7 @@ package fitnessclub;
 /**
  * Enum meant to represent the instructors teaching classes at the fitness club.
  * The 5 instructors are: Jennifer, Kim, Denise, Davis, and Emma.
- * @author Ashley Berlinski
+ * @author Ryan Colling, Ridwan Sharkar
  */
 public enum Instructor {
 

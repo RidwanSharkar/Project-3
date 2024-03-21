@@ -4,7 +4,7 @@ import java.util.Calendar;
 
 /**
  * Class meant to store and handle dates.
- * @author Ashley Berlinski
+ * @author Ryan Colling, Ridwan Sharkar
  */
 public class Date implements Comparable<Date> {
 

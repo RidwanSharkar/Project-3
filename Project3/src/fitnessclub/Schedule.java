@@ -6,7 +6,7 @@ import java.util.Scanner;
 /**
  * Instance stores a Schedule object that represents an array of FitnessClass objects.
  * Contains methods to add and expand the classes array and to load class information from a txt file.
- * @author Ridwan Sharkar, Ashley Berlinski
+ * @author Ryan Colling, Ridwan Sharkar
  */
 public class Schedule
 {

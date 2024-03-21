@@ -3,7 +3,7 @@ package fitnessclub;
 /**
  * Enum meant to represent the classes offered at the fitness club.
  * The 3 classes offered are: Pilates, Spinning and Cardio.
- * @author Ashley Berlinski
+ * @author Ryan Colling, Ridwan Sharkar
  */
 public enum Offer {
 

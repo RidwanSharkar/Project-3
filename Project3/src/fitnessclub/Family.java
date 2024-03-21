@@ -3,7 +3,7 @@ package fitnessclub;
 /**
  * Subclass of Member meant to represent a family membership plan of fitness club.
  * Family Members are billed quarterly and are allowed only one guest pass.
- * @author Ashley Berlinski
+ * @author Ryan Colling, Ridwan Sharkar
  */
 public class Family extends Member {
 

@@ -3,7 +3,7 @@ package fitnessclub;
 /**
  * Enum meant to represent the locations of the studios, contains city, county and zip code of said location.
  * The 5 locations are: Bridgewater, Edison, Franklin, Piscataway, Somerville.
- * @author Ashley Berlinski
+ * @author Ryan Colling, Ridwan Sharkar
  */
 public enum Location {
 

@@ -3,7 +3,7 @@ package fitnessclub;
 /**
  * Class meant to hold the personal information of a person's profile.
  * Contains their first and last name as well as their date of birth.
- * @author Ashley Berlinski
+ * @author Ryan Colling, Ridwan Sharkar
  */
 public class Profile implements Comparable<Profile>{
     private String fname;

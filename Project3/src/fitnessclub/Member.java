@@ -4,7 +4,7 @@ package fitnessclub;
  * Superclass meant to represent a member of fitness club.
  * Holds the basic information of a membership the member's profile, membership expiration and chosen home studio.
  * Should be used as a type and not as instance of an actual membership.
- * @author Ashley Berlinski
+ * @author Ryan Colling, Ridwan Sharkar@author Ashley Berlinski
  */
 public class Member implements Comparable<Member> {
     private Profile profile;

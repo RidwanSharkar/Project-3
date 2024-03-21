@@ -25,18 +25,22 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.beans.property.SimpleStringProperty;
 
+import javax.swing.*;
 
 
-/* Demo RadioButton, CheckBox, DatePicker and TableView */
-
-
+/**
+ * A class that handles the backend code of the GUI elements
+ * Gathers information from the user inputs in the GUI and uses logic to interpret them
+ * into useable information to operate the fitness class functionalities
+ * @author Ryan Colling, Ridwan Sharkar
+ */
 public class StudioManagerController
 {
     @FXML
-    DatePicker dp_dob;
+    DatePicker dp_dob, dobClasField;
 
     @FXML
-    private TextField fnameMemField, lnameMemField, gpassMemField;
+    private TextField fnameMemField, lnameMemField, gpassMemField, fnameClassField, lnameClasField, gpassRemainField;
 
     @FXML
     private TextArea output;
@@ -51,30 +55,18 @@ public class StudioManagerController
     private RadioButton bridgeMemRadButton, edisonMemRadButton, frankMemRadButton, piscaMemRadButton, somerMemRadButton;
 
     @FXML
+    private RadioButton pilatRadButton, spinRadButton, cardioRadButton;
+
+    @FXML
+    private RadioButton jennRadButton, kimRadButton, deniRadButton, davRadButton, emmaRadButton;
+
+    @FXML
+    private RadioButton bridgeClasRadButton, edisonClasRadButton, frankClasRadButton, piscaClasRadButton, somerClasRadButton;
+
+    @FXML
     private TableView<String> classSchTableView;
 
-    private MemberList memberList;
-
-
-    @FXML
-    void displaySelected(ActionEvent event)
-    {
-        if (rb_basic.isSelected())
-            output.appendText("basic\n");
-        else if (rb_family.isSelected())
-            output.appendText("family\n");
-        else
-            output.appendText("premium\n");
-    }
-
-    @FXML
-    void displayDate(ActionEvent event)
-    {
-        String date = dp_dob.getValue().toString();
-        output.appendText(date + "\n");
-    }
-
-    /*----------------------------------------------------------------------------*/
+    private MemberList memberList = new MemberList();
 
     @FXML
     private TableView<Location> locationTableView;
@@ -95,9 +87,11 @@ public class StudioManagerController
         locationTableView.setItems(locationList);
     }
 
-
-    /*----------------------------------------------------------------------------*/
-
+    /**
+     * A helper method to process the data from the date picker in the GUI
+     * @param ldate the date/information recieved from the GUI input
+     * @return the useable date interpreted from the GUI given date
+     */
     private Date handleDatePicker(LocalDate ldate) {
         int month = ldate.getMonthValue();
         int day = ldate.getDayOfMonth();
@@ -107,6 +101,11 @@ public class StudioManagerController
         return rdate;
     }
 
+    /**
+     * Helper method that determines which location is home location for the
+     * new user, based on information from the GUI
+     * @return the home location of the user
+     */
     private Location handleHomeStudioRB() {
 
         Location homeStudio;
@@ -132,6 +131,11 @@ public class StudioManagerController
 
     }
 
+    /**
+     * Helper method that determines the expiration date of auser wants to
+     * new users membership, information comes from the GUI
+     * @return the date of expiration for the membership
+     */
     private Date handleExprDate() {
         //default for expiration
         Date expiration;
@@ -174,11 +178,106 @@ public class StudioManagerController
         return expiration;
     }
 
+    /**
+     * Helper method that determines which instructor a user wants to
+     * participate with in a class with information from the GUI
+     * @return the desired instructor for the class
+     */
+    private Instructor handleInstructorSelect () {
 
+        Instructor instructor;
+
+        if(jennRadButton.isSelected()) {
+            instructor = Instructor.JENNIFER;
+        } else if (kimRadButton.isSelected()) {
+            instructor = Instructor.KIM;
+        } else if (deniRadButton.isSelected()) {
+            instructor = Instructor.DENISE;
+        } else if (davRadButton.isSelected()) {
+            instructor = Instructor.DAVIS;
+        } else {
+            instructor = Instructor.EMMA;
+        }
+
+        return instructor;
+    }
+
+    /**
+     * Helper method that determines which class type a user wants to
+     * participate in with information from the GUI
+     * @return the desired class type for the class
+     */
+    private Offer handleOfferSelect() {
+
+        Offer offer;
+
+        if(pilatRadButton.isSelected()) {
+            offer = Offer.PILATES;
+        } else if (spinRadButton.isSelected()) {
+            offer = Offer.SPINNING;
+        } else  {
+            offer = Offer.CARDIO;
+        }
+
+        return offer;
+    }
+
+    /**
+     * Helper method that determines which location a user wants to
+     * participate in a class with information from the GUI
+     * @return the desired location of the class
+     */
+    private Location handleClassStudio() {
+
+        Location classStudio;
+
+        if (bridgeClasRadButton.isSelected()) {
+            classStudio = Location.BRIDGEWATER;
+        } else if (edisonClasRadButton.isSelected()) {
+            classStudio = Location.EDISON;
+        } else if (frankClasRadButton.isSelected()) {
+            classStudio = Location.FRANKLIN;
+            //output.appendText("franklin\n");
+        } else if (piscaClasRadButton.isSelected()) {
+            classStudio = Location.PISCATAWAY;
+        } else {
+            classStudio = Location.SOMERVILLE;
+        }
+
+        return classStudio;
+
+    }
+
+    /**
+     * Method that changes the Guest Pass Text Field on the GUI
+     * depending on what membership type the user elects
+     * @param event The specific radio button being selected
+     */
+    @FXML
+    private void handleGPassCounter(ActionEvent event) {
+
+        if (rb_basic.isSelected()) {
+            gpassMemField.setText("0"); //changes Guest Pass field to 0 for basic members
+        } else if (rb_family.isSelected()) {
+            gpassMemField.setText("1"); //changes Guest Pass field to 1 for family members
+        } else {
+            gpassMemField.setText("3"); //changes Guest Pass field to 3 for premium members
+
+        }
+
+    }
+
+    /**
+     * Adds a member to the member list with the information from the GUI Members tab
+     * @param event the Add Member button being pressed
+     */
     @FXML
     private void handleAddMember(ActionEvent event) {
 
         //Creating a Profile from GUI data
+
+        MemberList memberList = new MemberList();
+
         String firstName = fnameMemField.getText();
         String lastName = lnameMemField.getText();
         LocalDate dpdate = dp_dob.getValue();
@@ -193,16 +292,13 @@ public class StudioManagerController
         if (rb_basic.isSelected()) {
             expire = handleExprDate();
             member = new Basic (memProf, expire, homeStudio);
-            gpassMemField.setText("0"); //changes Guest Pass field to 0 for basic members
 
         } else if (rb_family.isSelected()) {
             expire = handleExprDate();
             member = new Family (memProf, expire, homeStudio);
-            gpassMemField.setText("1"); //changes Guest Pass field to 1 for family members
         } else {
             expire = handleExprDate();
             member = new Premium (memProf, expire, homeStudio);
-            gpassMemField.setText("3"); //changes Guest Pass field to 3 for premium members
         }
 
         if(memberList.add(member)) {
@@ -213,6 +309,10 @@ public class StudioManagerController
 
     }
 
+    /**
+     * Removes a member from the member list with the information from the GUI member tab
+     * @param event the Cancel Existing button being pressed
+     */
     @FXML
     private void handleCancelExist (ActionEvent event) {
 
@@ -235,6 +335,83 @@ public class StudioManagerController
         } else {
             output.appendText("Error, invalid member or member doesn't have membership");
         }
+
+    }
+
+
+    /**
+     * Adds a member to a class from the information given on the
+     * GUI Class Attendence tab
+     */
+    @FXML
+    private void handleAddClassMem(ActionEvent event) {
+
+        String firstName = fnameClassField.getText();
+        String lastName = lnameClasField.getText();
+        LocalDate dpdate = dobClasField.getValue();
+        Date dob = handleDatePicker(dpdate);
+        Profile memProf = new Profile(firstName, lastName, dob);
+
+        Offer offer = handleOfferSelect();
+        Instructor instructor = handleInstructorSelect();
+        Location classStudio = handleClassStudio();
+
+    }
+
+    /**
+     * Removes a member to a class from the information given on the
+     * GUI Class Attendence tab
+     */
+    @FXML
+    private void handleRemClassMem(ActionEvent event) {
+
+        String firstName = fnameClassField.getText();
+        String lastName = lnameClasField.getText();
+        LocalDate dpdate = dobClasField.getValue();
+        Date dob = handleDatePicker(dpdate);
+        Profile memProf = new Profile(firstName, lastName, dob);
+
+        Offer offer = handleOfferSelect();
+        Instructor instructor = handleInstructorSelect();
+        Location classStudio = handleClassStudio();
+
+    }
+
+    /**
+     * Adds a guest to a class from the information given on the
+     * GUI Class Attendence tab
+     */
+    @FXML
+    private void handleAddClassGuest(ActionEvent event) {
+
+        String firstName = fnameClassField.getText();
+        String lastName = lnameClasField.getText();
+        LocalDate dpdate = dobClasField.getValue();
+        Date dob = handleDatePicker(dpdate);
+        Profile guessProf = new Profile(firstName, lastName, dob);
+
+        Offer offer = handleOfferSelect();
+        Instructor instructor = handleInstructorSelect();
+        Location classStudio = handleClassStudio();
+
+    }
+
+    /**
+     * Removes a guest to a class from the information given on the
+     * GUI Class Attendence tab
+     */
+    @FXML
+    private void handleRemClassGuest(ActionEvent event) {
+
+        String firstName = fnameClassField.getText();
+        String lastName = lnameClasField.getText();
+        LocalDate dpdate = dobClasField.getValue();
+        Date dob = handleDatePicker(dpdate);
+        Profile guessProf = new Profile(firstName, lastName, dob);
+
+        Offer offer = handleOfferSelect();
+        Instructor instructor = handleInstructorSelect();
+        Location classStudio = handleClassStudio();
 
     }
 
